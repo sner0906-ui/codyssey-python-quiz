@@ -1,38 +1,38 @@
-from quiz import Quiz
+from quiz import QUIZ_DATA
 
 class QuizGame:
     def __init__(self):
-        self.quizzes = []       # 퀴즈 목록
-        self.best_score = 0     # 최고 점수
-
-    def show_menu(self):
-        # 메뉴 출력 함수
-        print("\n========================================")
-        print("        🎯 나만의 퀴즈 게임 🎯")
-        print("========================================")
-        print("  1. 퀴즈 풀기")
-        print("  2. 퀴즈 추가")
-        print("  3. 퀴즈 목록")
-        print("  4. 점수 확인")
-        print("  5. 종료")
-        print("========================================")
+        self.score = 0          # 점수
+        self.total = len(QUIZ_DATA)  # 전체 문제 수
 
     def run(self):
-        # 게임 실행 함수
-        while True:
-            self.show_menu()
-            choice = input("  선택: ").strip()
+        print("\n🎯 퀴즈를 시작합니다!")
+        print(f"총 {self.total}문제입니다.\n")
 
-            if choice == "1":
-                print("퀴즈 풀기 - 준비 중")
-            elif choice == "2":
-                print("퀴즈 추가 - 준비 중")
-            elif choice == "3":
-                print("퀴즈 목록 - 준비 중")
-            elif choice == "4":
-                print("점수 확인 - 준비 중")
-            elif choice == "5":
-                print("게임을 종료합니다. 👋")
-                break
+        for quiz in QUIZ_DATA:
+            quiz.display()      # 문제 출력
+
+            # 답 입력받기
+            while True:
+                try:
+                    user_input = int(input("\n  정답 번호 입력 (1~4): "))
+                    if 1 <= user_input <= 4:
+                        break
+                    print("  ⚠️ 1~4 사이 숫자를 입력해주세요!")
+                except ValueError:
+                    print("  ⚠️ 숫자만 입력해주세요!")
+
+            # 정답 체크
+            if quiz.check(user_input):
+                print("  ✅ 정답입니다!")
+                self.score += 1
             else:
-                print("⚠️ 잘못된 입력입니다. 1-5 사이의 숫자를 입력하세요.")
+                print(f"  ❌ 오답입니다! 정답은 {quiz.answer}번이에요.")
+
+        self.show_result()      # 결과 출력
+
+    def show_result(self):
+        print("\n" + "="*30)
+        print(f"🏆 최종 점수: {self.score} / {self.total}")
+        print(f"📊 정답률: {self.score / self.total * 100:.1f}%")
+        print("="*30)
