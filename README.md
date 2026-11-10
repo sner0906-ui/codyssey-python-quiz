@@ -13,11 +13,13 @@ python main.py
 
 ## 🗂️ 파일 구조
 
+```
 codyssey-python-quiz/
 ├── main.py        # 메인 실행 파일
 ├── quiz.py        # Quiz 클래스 & 퀴즈 데이터
 ├── quiz_game.py   # QuizGame 클래스
 └── scores.json    # 점수 기록 파일 (자동 생성)
+```
 
 ## 🛠️ 사용 기술
 
