@@ -9,7 +9,7 @@ class Quiz:
         for i, choice in enumerate(self.choices, 1):
             print(f"  {i}. {choice}")
 
-    def check(self, user_answer):
+    def check_answer(self, user_answer):
         return self.answer == user_answer
 
 
