@@ -1,3 +1,82 @@
 {
-    "best_score": 5
+    "quizzes": [
+        {
+            "question": "Python에서 리스트를 만드는 기호는?",
+            "choices": [
+                "()",
+                "[]",
+                "{}",
+                "<>"
+            ],
+            "answer": 2,
+            "category": "Python 기초"
+        },
+        {
+            "question": "Python에서 주석을 달 때 사용하는 기호는?",
+            "choices": [
+                "//",
+                "#",
+                "/*",
+                "--"
+            ],
+            "answer": 2,
+            "category": "Python 기초"
+        },
+        {
+            "question": "Python에서 출력 함수는?",
+            "choices": [
+                "input()",
+                "open()",
+                "print()",
+                "len()"
+            ],
+            "answer": 3,
+            "category": "Python 기초"
+        },
+        {
+            "question": "스택(Stack)의 특징은?",
+            "choices": [
+                "FIFO",
+                "LIFO",
+                "정렬",
+                "랜덤"
+            ],
+            "answer": 2,
+            "category": "자료구조"
+        },
+        {
+            "question": "큐(Queue)의 특징은?",
+            "choices": [
+                "LIFO",
+                "랜덤",
+                "FIFO",
+                "역순 정렬"
+            ],
+            "answer": 3,
+            "category": "자료구조"
+        },
+        {
+            "question": "평균적으로 키 조회가 O(1)인 자료구조는?",
+            "choices": [
+                "연결 리스트",
+                "이진 탐색 트리",
+                "배열 순차 탐색",
+                "해시 테이블"
+            ],
+            "answer": 4,
+            "category": "자료구조"
+        },
+        {
+            "question": "Python에서 리스트의 길이를 구하는 함수는?",
+            "choices": [
+                "print()",
+                "input()",
+                "len()",
+                "sum()"
+            ],
+            "answer": 3,
+            "category": "Python 기초"
+        }
+    ],
+    "best_score": 7
 }
