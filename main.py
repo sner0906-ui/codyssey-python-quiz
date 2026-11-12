@@ -1,27 +1,28 @@
 from quiz_game import QuizGame
 
-def show_menu():
-    print("\n=== 🐍 Python 퀴즈 게임 ===")
-    print("1. 게임 시작")
-    print("2. 점수 기록 보기")
-    print("3. 종료")
-
 def main():
     game = QuizGame()
 
     while True:
-        show_menu()
-        choice = input("메뉴를 선택하세요 (1~3): ").strip()
+        print("=" * 30)
+        print("    🏆 Python 퀴즈 게임")
+        print("=" * 30)
+        print("  1. 퀴즈 시작")
+        print("  2. 최고 점수 보기")
+        print("  3. 종료")
+        print("=" * 30)
+
+        choice = input("메뉴를 선택하세요 (1-3): ").strip()
 
         if choice == "1":
-            game.start()
+            game.play()
         elif choice == "2":
-            game.score_manager.show_scores()
+            game.show_records()
         elif choice == "3":
-            print("👋 게임을 종료합니다. 수고하셨습니다!")
+            print("\n👋 게임을 종료합니다. 수고하셨습니다!\n")
             break
         else:
-            print("⚠️ 1~3 중에서 선택해주세요!")
+            print("\n⚠️ 1, 2, 3 중에서 선택해주세요!\n")
 
 if __name__ == "__main__":
     main()

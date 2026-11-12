@@ -1,43 +1,59 @@
-from quiz import Quiz
-from score_manager import ScoreManager
+from quiz import get_categories, get_quizzes_by_category
+
 
 class QuizGame:
     def __init__(self):
-        self.score_manager = ScoreManager()
-        self.quizzes = [
-            Quiz("파이썬에서 주석을 작성할 때 사용하는 기호는?",
-                 ["1) //", "2) #", "3) --", "4) **"], "2"),
-            Quiz("리스트에서 마지막 요소를 제거하는 메서드는?",
-                 ["1) remove()", "2) delete()", "3) pop()", "4) clear()"], "3"),
-            Quiz("파이썬에서 정수형 타입을 나타내는 키워드는?",
-                 ["1) integer", "2) int", "3) num", "4) digit"], "2"),
-            Quiz("다음 중 반복문이 아닌 것은?",
-                 ["1) for", "2) while", "3) loop", "4) 모두 반복문"], "3"),
-            Quiz("파이썬에서 아무것도 없음을 나타내는 값은?",
-                 ["1) null", "2) undefined", "3) None", "4) empty"], "3"),
-        ]
+        self.score = 0
+        self.high_score = 0
 
-    def start(self):
-        print("\n🎮 퀴즈 게임을 시작합니다!\n")
-        score = 0
+    def select_category(self):
+        """카테고리 선택"""
+        categories = get_categories()
 
-        for i, quiz in enumerate(self.quizzes, 1):
+        print("\n카테고리를 선택하세요:")
+        for i, category in enumerate(categories, 1):
+            print(f"  {i}. {category}")
+        print(f"  {len(categories) + 1}. 전체")
+
+        while True:
+            choice = input("선택: ").strip()
+            if choice.isdigit():
+                choice = int(choice)
+                if 1 <= choice <= len(categories):
+                    return categories[choice - 1]
+                elif choice == len(categories) + 1:
+                    return "전체"
+            print("올바른 번호를 입력해주세요.")
+
+    def play(self):
+        """퀴즈 게임 실행"""
+        category = self.select_category()
+        quizzes = get_quizzes_by_category(category)
+
+        print(f"\n[{category}] 카테고리 시작!\n")
+
+        self.score = 0
+        for i, quiz in enumerate(quizzes, 1):
             print(f"Q{i}. {quiz.question}")
-            for choice in quiz.choices:
-                print(f"  {choice}")
+            user_answer = input("정답: ").strip()
 
-            answer = input("정답 입력 (1~4): ").strip()
-
-            if quiz.check_answer(answer):
-                print("✅ 정답입니다!\n")
-                score += 1
+            if quiz.check_answer(user_answer):
+                print("✅ 정답!\n")
+                self.score += 1
             else:
-                print(f"❌ 오답입니다! 정답은 {quiz.answer}번이에요.\n")
+                print(f"❌ 오답! 정답은 [{quiz.answer}]\n")
 
-        total = len(self.quizzes)
-        rate = round(score / total * 100, 1)
+        print(f"최종 점수: {self.score} / {len(quizzes)}")
 
-        print(f"🏆 최종 점수: {score}/{total} | 정답률: {rate}%")
+        if self.score > self.high_score:
+            self.high_score = self.score
+            print("🏆 새로운 최고 점수!\n")
+        else:
+            print(f"최고 점수는 {self.high_score}점\n")
 
-        # 점수 저장
-        self.score_manager.save_score(score, total)
+    def show_high_score(self):
+        """최고 점수 출력"""
+        if self.high_score == 0:
+            print("\n저장된 기록이 없습니다.\n")
+        else:
+            print(f"\n🏆 최고 점수: {self.high_score}점\n")
