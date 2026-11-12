@@ -17,7 +17,7 @@ def main():
         if choice == "1":
             game.play()
         elif choice == "2":
-            game.show_records()
+            game.show_high_score()
         elif choice == "3":
             print("\n👋 게임을 종료합니다. 수고하셨습니다!\n")
             break

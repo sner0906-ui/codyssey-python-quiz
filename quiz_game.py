@@ -1,3 +1,5 @@
+import json
+from pathlib import Path
 from quiz import get_categories, get_quizzes_by_category
 
 
@@ -5,6 +7,18 @@ class QuizGame:
     def __init__(self):
         self.score = 0
         self.high_score = 0
+
+        state_file = Path(__file__).resolve().parent / "state.json"
+
+        try:
+            with open(state_file, "r", encoding="utf-8") as file:
+                data = json.load(file)
+
+            self.high_score = data.get("best_score", 0)
+
+        except (FileNotFoundError, json.JSONDecodeError, OSError):
+            print("⚠️ 저장된 점수를 읽을 수 없어 0점으로 시작합니다.")
+
 
     def select_category(self):
         """카테고리 선택"""
@@ -47,7 +61,23 @@ class QuizGame:
 
         if self.score > self.high_score:
             self.high_score = self.score
-            print("🏆 새로운 최고 점수!\n")
+
+            state_file = Path(__file__).resolve().parent / "state.json"
+
+            try:
+                with open(state_file, "w", encoding="utf-8") as file:
+                    json.dump(
+                        {"best_score": self.high_score},
+                        file,
+                        ensure_ascii=False,
+                        indent=4
+                    )
+
+                print("🏆 새로운 최고 점수가 저장되었습니다!\n")
+
+            except OSError:
+                print("⚠️ 최고 점수를 파일에 저장하지 못했습니다.")
+
         else:
             print(f"최고 점수는 {self.high_score}점\n")
 
