@@ -363,7 +363,37 @@ GitHub의 커밋 기록에서 확인할 수 있습니다.
 | `high-score.png` | 최고 점수 7점 |
 | `git-history.png` | 커밋 기록 및 브랜치 병합 |
 
-위 파일들은 제출 증빙용으로 별도 보관했습니다.
+아래는 직접 실행하고 캡처한 화면입니다.
+
+### 💻 개발환경
+
+![💻 개발환경](docs/screenshots/dev-environment.png)
+
+### 🎮 게임 메뉴
+
+![🎮 게임 메뉴](docs/screenshots/game-menu.png)
+
+### 🎯 퀴즈 풀이와 랜덤 출제
+
+![🎯 퀴즈 풀이와 랜덤 출제](docs/screenshots/quiz-play.png)
+
+### ✏️ 퀴즈 추가
+
+![✏️ 퀴즈 추가](docs/screenshots/quiz-add.png)
+
+### 📚 퀴즈 목록
+
+![📚 퀴즈 목록](docs/screenshots/quiz-list.png)
+
+### 🏆 최고 점수
+
+![🏆 최고 점수](docs/screenshots/high-score.png)
+
+### 🌿 Git 커밋과 브랜치 병합
+
+![🌿 Git 커밋과 브랜치 병합](docs/screenshots/git-history.png)
+
+
 
 ---
 
